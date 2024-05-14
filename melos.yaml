@@ -1,0 +1,4 @@
+name: flutter_challenge_cloudwalk
+
+packages:
+  - packages/**
