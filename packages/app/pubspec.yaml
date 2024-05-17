@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   core:
     path: ../core
+  map:
+    path: ../map
 
 dev_dependencies:
   flutter_test:
