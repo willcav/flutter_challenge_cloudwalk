@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 
 import '../data/interfaces/geolocation_driver.dart';
-import 'entities/geo_position.dart';
 
 class GeolocationService {
   final GeolocationDriver driver;
