@@ -5,7 +5,7 @@ void main() {
   group('Getter isLeft -', () {
     test('Should return false when object is $Right', () {
       // Arrange
-      final obj = Right('');
+      final obj = const Right('');
 
       // Act
       final result = obj.isLeft;
@@ -16,7 +16,7 @@ void main() {
 
     test('Should return true when object is $Left', () {
       // Arrange
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       // Act
       final result = obj.isLeft;
@@ -29,7 +29,7 @@ void main() {
   group('Getter isRight -', () {
     test('Should return false when object is $Left', () {
       // Arrange
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       // Act
       final result = obj.isRight;
@@ -40,7 +40,7 @@ void main() {
 
     test('Should return true when object is $Right', () {
       // Arrange
-      final obj = Right('');
+      final obj = const Right('');
 
       // Act
       final result = obj.isRight;
@@ -52,7 +52,7 @@ void main() {
 
   group('Getter left -', () {
     test('Should throw exception when object is $Right', () {
-      final obj = Right('');
+      final obj = const Right('');
 
       expect(obj.isLeft, false);
       expect(obj.isRight, true);
@@ -60,7 +60,7 @@ void main() {
     });
 
     test('Should return $Left when object is $Left', () {
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       expect(obj.isLeft, true);
       expect(obj.isRight, false);
@@ -70,7 +70,7 @@ void main() {
 
   group('Getter right -', () {
     test('Should throw exception when object is $Left', () {
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       expect(obj.isLeft, true);
       expect(obj.isRight, false);
@@ -78,7 +78,7 @@ void main() {
     });
 
     test('Should return $Right when object is $Right', () {
-      final obj = Right('');
+      final obj = const Right('');
 
       expect(obj.isLeft, false);
       expect(obj.isRight, true);
@@ -88,7 +88,7 @@ void main() {
 
   group('Getter rightOrNull -', () {
     test('Should return null when object is $Left', () {
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       expect(obj.isLeft, true);
       expect(obj.isRight, false);
@@ -96,7 +96,7 @@ void main() {
     });
 
     test('Should return $Right when object is $Right', () {
-      final obj = Right('');
+      final obj = const Right('');
 
       expect(obj.isLeft, false);
       expect(obj.isRight, true);
@@ -107,7 +107,7 @@ void main() {
   group('Method fold -', () {
     test('Should get $Left value when object is $Left', () {
       // Arrange
-      final obj = Left(GenericFailure());
+      final obj = const Left(GenericFailure());
 
       // Act
       final result = obj.fold((l) => l, (r) => r);
@@ -120,7 +120,7 @@ void main() {
 
     test('Should get $Right value when object is $Right', () {
       // Arrange
-      final obj = Right('value');
+      final obj = const Right('value');
 
       // Act
       final result = obj.fold((l) => l, (r) => r);

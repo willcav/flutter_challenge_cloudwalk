@@ -108,7 +108,7 @@ void main() {
       final request =
           Right<InterceptorFailure, NetworkRequest>(_FakeNetworkRequest());
       when(() => _httpClient.request(request.right))
-          .thenThrow(GenericFailure());
+          .thenThrow(const GenericFailure());
       when(() => _interceptorHandler.onError(any())).thenAnswer(
         (_) async => _FakeNetworkFailure(),
       );
@@ -154,7 +154,7 @@ void main() {
             'statusCode': 200,
             'method': 'get',
             'headers': {'data': ''},
-          });
+          },);
       when(() => _interceptorHandler.onResponse(any()))
           .thenAnswer((_) async => Left(_FakeInterceptorFailure()));
       when(() => _interceptorHandler.onError(any())).thenAnswer(
@@ -179,7 +179,7 @@ void main() {
             'statusCode': 200,
             'method': 'get',
             'headers': {'data': ''},
-          });
+          },);
       final response = _FakeNetworkResponse();
       when(() => _interceptorHandler.onResponse(any()))
           .thenAnswer((_) async => Right(response));

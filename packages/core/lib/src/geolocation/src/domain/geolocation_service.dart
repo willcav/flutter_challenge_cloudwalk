@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import '../../../../core.dart';
 
 import '../data/interfaces/geolocation_driver.dart';
 

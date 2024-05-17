@@ -1,9 +1,7 @@
-import 'package:core/src/abstractions/either.dart';
-import 'package:core/src/network/src/data/request_handler.dart';
-
-import 'package:core/src/network/src/domain/entities/entities.dart';
-
+import '../../../abstractions/either.dart';
+import '../domain/entities/entities.dart';
 import '../domain/interfaces/network.dart';
+import 'request_handler.dart';
 
 class NetworkImpl implements Network {
   final String _url;

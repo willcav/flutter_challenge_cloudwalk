@@ -51,9 +51,8 @@ abstract class Either<L, R> {
     }
   }
 
-  B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight) {
-    return isLeft ? ifLeft(left) : ifRight(right);
-  }
+  B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight) =>
+      isLeft ? ifLeft(left) : ifRight(right);
 }
 
 /// Wrapper for a value of type [L].

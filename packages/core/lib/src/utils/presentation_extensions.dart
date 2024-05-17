@@ -17,14 +17,10 @@ extension ValueListenableExtensions<T> on ValueListenable<T> {
   ///   }
   /// }
   /// ```
-  ValueListenableBuilder<T> observer({required Builder<T> builder}) {
-    return ValueListenableBuilder(
+  ValueListenableBuilder<T> observer({required Builder<T> builder}) => ValueListenableBuilder(
       valueListenable: this,
-      builder: (context, T value, widget) {
-        return builder(context, value, widget);
-      },
+      builder: (context, T value, widget) => builder(context, value, widget),
     );
-  }
 }
 
 extension ValueNotifierExtensions<T> on ValueNotifier<T> {
@@ -34,4 +30,4 @@ extension ValueNotifierExtensions<T> on ValueNotifier<T> {
 }
 
 typedef Builder<T> = Widget Function(
-    BuildContext context, T value, Widget? widget);
+    BuildContext context, T value, Widget? widget,);

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class ButtonMapWidget extends StatelessWidget {
   const ButtonMapWidget({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.textColor,
     this.backgroundColor,
     this.onPressed,
@@ -15,8 +14,7 @@ class ButtonMapWidget extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
+  Widget build(BuildContext context) => Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
@@ -24,10 +22,8 @@ class ButtonMapWidget extends StatelessWidget {
         ),
       ],
     );
-  }
 
-  Widget _buildButton() {
-    return TextButton(
+  Widget _buildButton() => TextButton(
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
           const EdgeInsets.all(12),
@@ -52,5 +48,4 @@ class ButtonMapWidget extends StatelessWidget {
       onPressed: onPressed,
       child: child,
     );
-  }
 }

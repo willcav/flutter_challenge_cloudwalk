@@ -156,7 +156,7 @@ void main() {
             headers: any(named: 'headers'),
             queryParameters: any(named: 'queryParameters'),
             timeout: any(named: 'timeout'),
-          )).thenReturn(request);
+          ),).thenReturn(request);
 
       final result = await _handler.onRequest(request);
 

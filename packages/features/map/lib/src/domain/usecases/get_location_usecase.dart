@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:map/src/domain/entities/location_info.dart';
-import 'package:map/src/domain/interfaces/map_repository.dart';
+import '../entities/location_info.dart';
+import '../interfaces/map_repository.dart';
 
 class GetLocationUseCase {
   final MapRepository _repository;

@@ -1,8 +1,7 @@
 import 'package:core/core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:map/src/presentation/map_viewmodel.dart';
+import 'map_viewmodel.dart';
 
 import 'states/button_state.dart';
 import 'styles/map_styles.dart';
@@ -43,7 +42,7 @@ class _MapPageState extends State<MapPage> {
             location.longitude,
           ),
           infoWindow: InfoWindow.noText,
-        ));
+        ),);
         mapController.animateCamera(
           CameraUpdate.newLatLngZoom(
             LatLng(
@@ -58,8 +57,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
+  Widget build(BuildContext context) => Stack(
       alignment: Alignment.bottomCenter,
       children: [
         GoogleMap(
@@ -81,8 +79,7 @@ class _MapPageState extends State<MapPage> {
               vertical: 16,
               horizontal: 24,
             ),
-            child: viewModel.buttonState.observer(builder: (_, state, __) {
-              return switch (state) {
+            child: viewModel.buttonState.observer(builder: (_, state, __) => switch (state) {
                 ButtonSuccessState() => ButtonMapWidget(
                     onPressed: viewModel.getLocation,
                     child: const Text('Go to my location'),
@@ -99,11 +96,9 @@ class _MapPageState extends State<MapPage> {
                     onPressed: viewModel.getLocation,
                     child: const Text('Try again'),
                   ),
-              };
-            }),
+              },),
           ),
-        )
+        ),
       ],
     );
-  }
 }

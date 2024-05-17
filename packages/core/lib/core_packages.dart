@@ -1,6 +1,5 @@
-import 'package:core/src/geolocation/package.dart';
-
 import 'src/abstractions/abstractions.dart';
+import 'src/geolocation/package.dart';
 import 'src/network/package.dart';
 
 class CorePackages {

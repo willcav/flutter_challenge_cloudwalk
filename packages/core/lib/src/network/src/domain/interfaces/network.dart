@@ -1,6 +1,5 @@
-import 'package:core/core.dart';
+import '../../../../../core.dart';
 
-import '../entities/entities.dart';
 
 abstract interface class Network {
   factory Network(String baseUrl) => SL.I<Network>(param1: baseUrl);

@@ -1,6 +1,4 @@
-import 'package:core/core.dart';
-
-import '../../domain/entities/geo_position.dart';
+import '../../../../../core.dart';
 
 abstract interface class GeolocationDriver {
   Future<Either<Failure, GeoPosition>> getCurrentPosition();

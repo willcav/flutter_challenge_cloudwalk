@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:core/core.dart';
-import 'package:core/src/geolocation/src/domain/geolocation_service.dart';
-import 'package:core/src/geolocation/src/infra/geolocator_driver.dart';
-
+import '../../core.dart';
 import 'src/data/interfaces/geolocation_driver.dart';
+import 'src/infra/geolocator_driver.dart';
 
 class GeolocationPackage implements CommonPackage {
   @override

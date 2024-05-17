@@ -26,9 +26,9 @@ class MapFeature implements CommonFeature {
     );
 
     SL.I.registerFactory<GetLocationUseCase>(
-        () => GetLocationUseCase(SL.I<MapRepository>()));
+        () => GetLocationUseCase(SL.I<MapRepository>()),);
 
     SL.I.registerFactory<MapViewModel>(
-        () => MapViewModel(SL.I<GetLocationUseCase>()));
+        () => MapViewModel(SL.I<GetLocationUseCase>()),);
   }
 }

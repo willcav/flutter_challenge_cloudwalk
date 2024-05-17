@@ -74,7 +74,7 @@ Future<void> _testTemplate(
     Future<Either<Failure, NetworkResponse>> callback(String endpoint),
     NetworkRequestMethod method,
     NetworkRequestHandler _requestHandler,
-    String baseUrl) async {
+    String baseUrl,) async {
   // Arrange
   final endpoint = 'endpoint';
   final request =
@@ -86,7 +86,7 @@ Future<void> _testTemplate(
         endpoint,
         contentType: any(named: 'contentType'),
         body: any(named: 'body'),
-      )).thenAnswer((_) async => request);
+      ),).thenAnswer((_) async => request);
 
   when(() => _requestHandler.executeRequest(request))
       .thenAnswer((_) async => Right(response));
@@ -99,6 +99,6 @@ Future<void> _testTemplate(
         endpoint,
         contentType: any(named: 'contentType'),
         body: any(named: 'body'),
-      )).called(1);
+      ),).called(1);
   verify(() => _requestHandler.executeRequest(request)).called(1);
 }

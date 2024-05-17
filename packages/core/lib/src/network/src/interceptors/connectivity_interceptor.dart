@@ -12,7 +12,7 @@ class ConnectivityInterceptor implements NetworkInterceptor {
 
   @override
   Future<Either<InterceptorFailure, NetworkRequest>> onRequest(
-      NetworkRequest request) async {
+      NetworkRequest request,) async {
     try {
       final result = await lookupHandler('google.com').timeout(
         request.timeout ?? const Duration(seconds: 30),
@@ -24,7 +24,7 @@ class ConnectivityInterceptor implements NetworkInterceptor {
     } catch (e) {
       return Left(
         InterceptorFailure(
-          message: "No Connection",
+          message: 'No Connection',
           url: request.url,
           method: request.method,
         ),
@@ -34,7 +34,7 @@ class ConnectivityInterceptor implements NetworkInterceptor {
 
   @override
   Future<Either<InterceptorFailure, NetworkResponse>> onResponse(
-          NetworkResponse response) async =>
+          NetworkResponse response,) async =>
       Right(response);
 
   @override

@@ -25,8 +25,7 @@ class NetworkResponse {
     required this.headers,
   });
 
-  factory NetworkResponse.fromJson(Map<String, dynamic> json) {
-    return NetworkResponse(
+  factory NetworkResponse.fromJson(Map<String, dynamic> json) => NetworkResponse(
       json['data'],
       url: json['url'],
       statusCode: json['statusCode'],
@@ -34,7 +33,6 @@ class NetworkResponse {
           NetworkRequestMethod.get,
       headers: json['headers'],
     );
-  }
 
   NetworkResponse copyWith({
     String? url,

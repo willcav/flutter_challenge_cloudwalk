@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:core/core.dart';
-import 'package:core/src/network/src/data/request_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../../core.dart';
 import 'src/data/interceptor_handler.dart';
 import 'src/data/interfaces/network_http_client.dart';
 import 'src/data/network_impl.dart';
+import 'src/data/request_handler.dart';
 import 'src/infra/dio_client.dart';
 import 'src/interceptors/connectivity_interceptor.dart';
 
@@ -39,12 +39,10 @@ class NetworkPackage implements CommonPackage {
     );
 
     SL.I.registerFactoryWithParams<Network, String, void>(
-      (baseUrl, _) {
-        return NetworkImpl(
+      (baseUrl, _) => NetworkImpl(
           url: baseUrl,
           requestHandler: SL.I<NetworkRequestHandler>(),
-        );
-      },
+        ),
     );
   }
 }

@@ -13,8 +13,7 @@ class NetworkInterceptorHandler {
   /// It will iterate through all interceptors and call their [onRequest] method
   Future<Either<InterceptorFailure, NetworkRequest>> onRequest(
     NetworkRequest request,
-  ) async {
-    return intercept<NetworkRequest>(
+  ) async => intercept<NetworkRequest>(
       input: request,
       interceptorCall: (interceptor, interceptedRequest) =>
           interceptor.onRequest(interceptedRequest),
@@ -30,13 +29,11 @@ class NetworkInterceptorHandler {
         timeout: updatedRequest.timeout,
       ),
     );
-  }
 
   /// Action called after getting the driver implementation response.
   /// It will iterate through all interceptors and call their [onResponse] method
   Future<Either<InterceptorFailure, NetworkResponse>> onResponse(
-      NetworkResponse response) async {
-    return intercept<NetworkResponse>(
+      NetworkResponse response,) async => intercept<NetworkResponse>(
       input: response,
       interceptorCall: (interceptor, interceptedResponse) =>
           interceptor.onResponse(interceptedResponse),
@@ -48,7 +45,6 @@ class NetworkInterceptorHandler {
         data: updatedResponse.getData(),
       ),
     );
-  }
 
   /// Action called after getting the driver implementation response.
   /// It will iterate through all interceptors and call their [onResponse] method

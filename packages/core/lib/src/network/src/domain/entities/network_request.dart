@@ -1,4 +1,4 @@
-import 'package:core/src/network/src/domain/entities/entities.dart';
+import 'entities.dart';
 
 class NetworkRequest {
   final String url;

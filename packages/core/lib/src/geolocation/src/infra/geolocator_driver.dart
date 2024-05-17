@@ -1,6 +1,6 @@
-import 'package:core/core.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../core.dart';
 import '../data/interfaces/geolocation_driver.dart';
 import '../domain/entities/geolocation_failure.dart';
 
@@ -20,9 +20,11 @@ class GeolocatorDriver implements GeolocationDriver {
     try {
       isServiceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!isServiceEnabled) {
-        return Left(GeolocationFailure(
-          message: 'Location service is disabled',
-        ));
+        return const Left(
+          GeolocationFailure(
+            message: 'Location service is disabled',
+          ),
+        );
       }
 
       final permissionResult = await checkAndRequestPermission();
@@ -30,8 +32,8 @@ class GeolocatorDriver implements GeolocationDriver {
         return Left(permissionResult.left);
       }
 
-      final position =
-          await Geolocator.getCurrentPosition(timeLimit: Duration(seconds: 10));
+      final position = await Geolocator.getCurrentPosition(
+          timeLimit: const Duration(seconds: 10),);
 
       lastKnownPosition = position;
 
@@ -65,12 +67,14 @@ class GeolocatorDriver implements GeolocationDriver {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Left(GeolocationFailure(
-          message: _locationPermissionDeniedMessage,
-        ));
+        return const Left(
+          GeolocationFailure(
+            message: _locationPermissionDeniedMessage,
+          ),
+        );
       }
     } else if (permission == LocationPermission.deniedForever) {
-      return Left(
+      return const Left(
         GeolocationFailure(
           message: _locationPermissionDeniedForeverMessage,
         ),
@@ -79,11 +83,13 @@ class GeolocatorDriver implements GeolocationDriver {
 
     if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
-      return Right(null);
+      return const Right(null);
     }
 
-    return Left(GeolocationFailure(
-      message: _locationPermissionNotDeterminedMessage,
-    ));
+    return const Left(
+      GeolocationFailure(
+        message: _locationPermissionNotDeterminedMessage,
+      ),
+    );
   }
 }

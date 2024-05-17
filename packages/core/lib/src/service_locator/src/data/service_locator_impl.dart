@@ -27,7 +27,7 @@ class ServiceLocatorImpl implements ServiceLocator {
 
   @override
   void registerFactory<T extends Object>(T Function() factoryFunc,
-      {String? instanceName}) {
+      {String? instanceName,}) {
     _assert<T>();
     return _driver.registerFactory<T>(
       factoryFunc,
@@ -38,7 +38,7 @@ class ServiceLocatorImpl implements ServiceLocator {
   @override
   void registerFactoryWithParams<T extends Object, P1, P2>(
       T Function(P1 p1, P2 p2) factoryFunc,
-      {String? instanceName}) {
+      {String? instanceName,}) {
     _assert<T>();
     return _driver.registerFactoryWithParams<T, P1, P2>(
       factoryFunc,
@@ -48,7 +48,7 @@ class ServiceLocatorImpl implements ServiceLocator {
 
   @override
   void registerLazySingleton<T extends Object>(T Function() singletonFunc,
-      {String? instanceName, FutureOr Function(T param)? dispose}) {
+      {String? instanceName, FutureOr Function(T param)? dispose,}) {
     _assert<T>();
     return _driver.registerLazySingleton<T>(
       singletonFunc,
@@ -61,7 +61,7 @@ class ServiceLocatorImpl implements ServiceLocator {
   void registerSingleton<T extends Object>(T singleton,
       {String? instanceName,
       bool? signalsReady,
-      FutureOr Function(T param)? dispose}) {
+      FutureOr Function(T param)? dispose,}) {
     _assert<T>();
     return _driver.registerSingleton<T>(
       singleton,
@@ -78,7 +78,7 @@ class ServiceLocatorImpl implements ServiceLocator {
   FutureOr resetLazySingleton<T extends Object>(
       {Object? instance,
       String? instanceName,
-      FutureOr Function(Object param)? disposingFunction}) {
+      FutureOr Function(Object param)? disposingFunction,}) {
     _assert<T>();
     return _driver.resetLazySingleton<T>(
       instance: instance,

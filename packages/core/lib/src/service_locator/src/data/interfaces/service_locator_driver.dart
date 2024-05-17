@@ -16,11 +16,11 @@ abstract interface class ServiceLocatorDriver {
   bool isRegistered<T extends Object>({T? instance, String? instanceName});
 
   void registerFactory<T extends Object>(T Function() factoryFunc,
-      {String? instanceName});
+      {String? instanceName,});
 
   void registerFactoryWithParams<T extends Object, P1, P2>(
       T Function(P1, P2) factoryFunc,
-      {String? instanceName});
+      {String? instanceName,});
 
   void registerSingleton<T extends Object>(
     T singleton, {
@@ -30,7 +30,7 @@ abstract interface class ServiceLocatorDriver {
   });
 
   void registerLazySingleton<T extends Object>(T Function() singletonFunc,
-      {String? instanceName, FutureOr Function(T param)? dispose});
+      {String? instanceName, FutureOr Function(T param)? dispose,});
 
   Future<void> reset({bool dispose = true});
 

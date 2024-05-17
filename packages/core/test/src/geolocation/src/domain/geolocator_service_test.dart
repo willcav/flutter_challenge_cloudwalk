@@ -17,7 +17,7 @@ void main() {
   group('Method - getCurrentPosition', () {
     test('Should return a $Left when driver fails', () async {
       when(() => _driver.getCurrentPosition()).thenAnswer(
-        (_) async => Left(
+        (_) async => const Left(
           GenericFailure(),
         ),
       );
@@ -49,7 +49,7 @@ void main() {
   group('Method - checkAndRequestPermission', () {
     test('Should return a $Left when driver fails', () async {
       when(() => _driver.checkAndRequestPermission()).thenAnswer(
-        (_) async => Left(
+        (_) async => const Left(
           GenericFailure(),
         ),
       );
@@ -62,7 +62,7 @@ void main() {
 
     test('Should return a $Right when driver succeeds', () async {
       when(() => _driver.checkAndRequestPermission()).thenAnswer(
-        (_) async => Right(null),
+        (_) async => const Right(null),
       );
 
       final result = await _service.checkAndRequestPermission();

@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
-import 'package:map/src/data/models/location_info_model.dart';
 
 import '../domain/entities/location_info.dart';
 import '../domain/interfaces/map_repository.dart';
 import 'interfaces/map_datasource.dart';
+import 'models/location_info_model.dart';
 
 const _failedToGetLocation = 'Failed to get location';
 
@@ -39,7 +39,7 @@ class MapRepositoryImpl implements MapRepository {
   }
 
   Either<Failure, LocationInfo> handleIpLocationResponse(
-      Either<Failure, NetworkResponse> ipLocation) {
+      Either<Failure, NetworkResponse> ipLocation,) {
     try {
       final locationInfo =
           LocationInfoModel.fromJson(ipLocation.right.jsonData);

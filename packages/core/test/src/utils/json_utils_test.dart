@@ -24,13 +24,13 @@ void main() {
     test('Should return $Json if input text is valid', () {
       // Arrange
       final validJson = {
-        "list": [1, 2, 3],
-        "boolean": true,
-        "color": "gold",
-        "null": null,
-        "number": 123,
-        "object": {"a": "b", "c": "d"},
-        "string": "Hello World",
+        'list': [1, 2, 3],
+        'boolean': true,
+        'color': 'gold',
+        'null': null,
+        'number': 123,
+        'object': {'a': 'b', 'c': 'd'},
+        'string': 'Hello World',
       };
       final stringJson = json.encode(validJson);
       // Act
@@ -62,17 +62,17 @@ void main() {
       // Arrange
       final validJsonList = [
         {
-          "list": [1, 2, 3],
-          "boolean": true,
-          "number": 123,
+          'list': [1, 2, 3],
+          'boolean': true,
+          'number': 123,
         },
         {
-          "color": "gold",
-          "null": null,
+          'color': 'gold',
+          'null': null,
         },
         {
-          "object": {"a": "b", "c": "d"},
-          "string": "Hello World",
+          'object': {'a': 'b', 'c': 'd'},
+          'string': 'Hello World',
         }
       ];
       final stringJson = json.encode(validJsonList);

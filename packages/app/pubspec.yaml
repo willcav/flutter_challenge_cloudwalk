@@ -13,7 +13,7 @@ dependencies:
   core:
     path: ../core
   map:
-    path: ../map
+    path: ../features/map
 
 dev_dependencies:
   flutter_test:

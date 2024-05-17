@@ -1,5 +1,6 @@
-import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../../../../core.dart';
 
 enum HttpFailureType {
   // Status code related failures
@@ -59,11 +60,9 @@ class NetworkFailure implements Failure {
     String? message,
     int? statusCode,
     HttpFailureType? type,
-  }) {
-    return NetworkFailure(
+  }) => NetworkFailure(
       message: message ?? this.message,
       statusCode: statusCode ?? this.statusCode,
       type: type ?? this._type,
     );
-  }
 }

@@ -121,7 +121,7 @@ void main() {
       // Arrange
       final func = (_, __) => TestClassType();
       when(() => _serviceLocatorDriver
-              .registerFactoryWithParams<TestClassType, int, int>(func))
+              .registerFactoryWithParams<TestClassType, int, int>(func),)
           .thenThrow(ArgumentError());
 
       // Act
@@ -131,7 +131,7 @@ void main() {
       // Assert
       expect(() => action(func), throwsA(isA<ArgumentError>()));
       verify(() => _serviceLocatorDriver
-          .registerFactoryWithParams<TestClassType, int, int>(func)).called(1);
+          .registerFactoryWithParams<TestClassType, int, int>(func),).called(1);
     });
 
     test(
@@ -140,7 +140,7 @@ void main() {
       // Arrange
       final func = (_, __) => TestClassType();
       when(() => _serviceLocatorDriver
-              .registerFactoryWithParams<TestClassType, int, int>(func))
+              .registerFactoryWithParams<TestClassType, int, int>(func),)
           .thenReturn(null);
 
       // Act
@@ -148,7 +148,7 @@ void main() {
 
       // Assert
       verify(() => _serviceLocatorDriver
-          .registerFactoryWithParams<TestClassType, int, int>(func)).called(1);
+          .registerFactoryWithParams<TestClassType, int, int>(func),).called(1);
     });
   });
 
@@ -159,7 +159,7 @@ void main() {
       // Arrange
       final testClassType = TestClassType();
       when(() => _serviceLocatorDriver.registerSingleton<TestClassType>(
-          testClassType)).thenThrow(ArgumentError());
+          testClassType,),).thenThrow(ArgumentError());
 
       // Act
       final action = _serviceLocator.registerSingleton<TestClassType>;
@@ -167,7 +167,7 @@ void main() {
       // Assert
       expect(() => action(testClassType), throwsA(isA<ArgumentError>()));
       verify(() => _serviceLocatorDriver
-          .registerSingleton<TestClassType>(testClassType)).called(1);
+          .registerSingleton<TestClassType>(testClassType),).called(1);
     });
 
     test(
@@ -176,14 +176,14 @@ void main() {
       // Arrange
       final testClassType = TestClassType();
       when(() => _serviceLocatorDriver
-          .registerSingleton<TestClassType>(testClassType)).thenReturn(null);
+          .registerSingleton<TestClassType>(testClassType),).thenReturn(null);
 
       // Act
       _serviceLocator.registerSingleton<TestClassType>(testClassType);
 
       // Assert
       verify(() => _serviceLocatorDriver
-          .registerSingleton<TestClassType>(testClassType)).called(1);
+          .registerSingleton<TestClassType>(testClassType),).called(1);
     });
   });
 
@@ -194,7 +194,7 @@ void main() {
       // Arrange
       final func = () => TestClassType();
       when(() =>
-              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func))
+              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func),)
           .thenThrow(ArgumentError());
 
       // Act
@@ -203,7 +203,7 @@ void main() {
       // Assert
       expect(() => action(func), throwsA(isA<ArgumentError>()));
       verify(() =>
-              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func))
+              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func),)
           .called(1);
     });
 
@@ -213,7 +213,7 @@ void main() {
       // Arrange
       final func = () => TestClassType();
       when(() =>
-              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func))
+              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func),)
           .thenReturn(null);
 
       // Act
@@ -221,7 +221,7 @@ void main() {
 
       // Assert
       verify(() =>
-              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func))
+              _serviceLocatorDriver.registerLazySingleton<TestClassType>(func),)
           .called(1);
     });
   });
@@ -242,7 +242,7 @@ void main() {
     // Arrange
     final testClassType = TestClassType();
     when(() =>
-            _serviceLocatorDriver.resetLazySingleton(instance: testClassType))
+            _serviceLocatorDriver.resetLazySingleton(instance: testClassType),)
         .thenAnswer((invocation) => invocation);
 
     // Act
@@ -250,7 +250,7 @@ void main() {
 
     // Assert
     verify(() =>
-            _serviceLocatorDriver.resetLazySingleton(instance: testClassType))
+            _serviceLocatorDriver.resetLazySingleton(instance: testClassType),)
         .called(1);
   });
 }

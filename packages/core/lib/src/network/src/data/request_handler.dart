@@ -22,7 +22,7 @@ class NetworkRequestHandler {
     Map<String, dynamic>? headers,
     NetworkResponseType? responseType,
   }) async {
-    final url = "$baseUrl$endpoint";
+    final url = '$baseUrl$endpoint';
 
     // The timeout can be defined in a remote configuration
     const timeout = Duration(seconds: 30);

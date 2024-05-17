@@ -80,15 +80,13 @@ extension on NetworkResponseType {
 }
 
 extension on Response {
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      "url": realUri.host + realUri.path,
-      "method": requestOptions.method,
-      "headers": requestOptions.headers,
-      "statusCode": statusCode,
-      "data": data,
+  Map<String, dynamic> toMap() => <String, dynamic>{
+      'url': realUri.host + realUri.path,
+      'method': requestOptions.method,
+      'headers': requestOptions.headers,
+      'statusCode': statusCode,
+      'data': data,
     };
-  }
 }
 
 extension on DioException {

@@ -6,10 +6,8 @@ class LocationInfoModel extends LocationInfo {
     required super.longitude,
   });
 
-  factory LocationInfoModel.fromJson(Map<String, dynamic> json) {
-    return LocationInfoModel(
+  factory LocationInfoModel.fromJson(Map<String, dynamic> json) => LocationInfoModel(
       latitude: json['lat'],
       longitude: json['lon'],
     );
-  }
 }
