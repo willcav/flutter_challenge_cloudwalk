@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
+  core:
+    path: ../core
 
 dev_dependencies:
   flutter_test:
