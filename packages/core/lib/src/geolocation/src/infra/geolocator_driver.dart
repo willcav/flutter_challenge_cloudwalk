@@ -62,11 +62,6 @@ class GeolocatorDriver implements GeolocationDriver {
   Future<Either<Failure, void>> checkAndRequestPermission() async {
     permission = await Geolocator.checkPermission();
 
-    if (permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse) {
-      return Right(null);
-    }
-
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
@@ -80,6 +75,11 @@ class GeolocatorDriver implements GeolocationDriver {
           message: _locationPermissionDeniedForeverMessage,
         ),
       );
+    }
+
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      return Right(null);
     }
 
     return Left(GeolocationFailure(
