@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../data/interfaces/geolocation_driver.dart';
-import '../domain/entities/geo_position.dart';
 import '../domain/entities/geolocation_failure.dart';
 
 const String _locationPermissionDeniedMessage = 'Location permission is denied';
@@ -14,28 +13,49 @@ const String _locationPermissionNotDeterminedMessage =
 class GeolocatorDriver implements GeolocationDriver {
   bool isServiceEnabled = false;
   LocationPermission permission = LocationPermission.denied;
+  Position? lastKnownPosition;
 
   @override
   Future<Either<Failure, GeoPosition>> getCurrentPosition() async {
-    isServiceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!isServiceEnabled) {
-      return Left(GeolocationFailure(
-        message: 'Location service is disabled',
-      ));
-    }
+    try {
+      isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!isServiceEnabled) {
+        return Left(GeolocationFailure(
+          message: 'Location service is disabled',
+        ));
+      }
 
-    final permissionResult = await checkAndRequestPermission();
-    if (permissionResult.isLeft) {
-      return Left(permissionResult.left);
-    }
+      final permissionResult = await checkAndRequestPermission();
+      if (permissionResult.isLeft) {
+        return Left(permissionResult.left);
+      }
 
-    final position = await Geolocator.getCurrentPosition();
-    return Right(
-      GeoPosition(
-        latitude: position.latitude,
-        longitude: position.longitude,
-      ),
-    );
+      final position =
+          await Geolocator.getCurrentPosition(timeLimit: Duration(seconds: 10));
+
+      lastKnownPosition = position;
+
+      return Right(
+        GeoPosition(
+          latitude: position.latitude,
+          longitude: position.longitude,
+        ),
+      );
+    } catch (e) {
+      if (lastKnownPosition != null) {
+        return Right(
+          GeoPosition(
+            latitude: lastKnownPosition!.latitude,
+            longitude: lastKnownPosition!.longitude,
+          ),
+        );
+      }
+      return Left(
+        GeolocationFailure(
+          message: e.toString(),
+        ),
+      );
+    }
   }
 
   @override
