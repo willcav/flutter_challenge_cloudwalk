@@ -7,6 +7,18 @@
         android:label="app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!--
+            Hardcoding API keys in the manifest file is not a recommended practice for production apps.
+            It's done here for the sake of simplicity in this challenge/demo app.
+
+            In a production environment, i would recommended to:
+            - Store the API key securely on a server and retrieve it at runtime.
+            - Or, store it in a secure local configuration file that's not included in version control.
+            - Use obfuscation tools like ProGuard to prevent reverse engineering of the APK.
+
+            Security is paramount in a production environment.
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD2s6HoOsQ6sTVqtgc3ZP9TkeWM-zE86EU" />
