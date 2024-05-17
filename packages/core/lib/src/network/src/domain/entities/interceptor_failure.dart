@@ -9,7 +9,7 @@ class InterceptorFailure {
   final Map<String, dynamic>? headers;
   final dynamic body;
 
-  InterceptorFailure({
+  const InterceptorFailure({
     required this.message,
     required this.url,
     required this.method,
