@@ -6,5 +6,5 @@ abstract interface class Failure implements Exception {
 class GenericFailure implements Failure {
   final String? message;
 
-  const GenericFailure(this.message);
+  const GenericFailure([this.message]);
 }
