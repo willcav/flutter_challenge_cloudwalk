@@ -22,6 +22,10 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keysPropertiesFile = rootProject.file('keys.properties')
+def keysProperties = new Properties()
+keysProperties.load(new FileInputStream(keysPropertiesFile))
+
 android {
     namespace "com.example.app"
     compileSdk 34
@@ -49,6 +53,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [
+                geoApiKey: keysProperties['GEO_API_KEY']
+        ]
     }
 
     buildTypes {
