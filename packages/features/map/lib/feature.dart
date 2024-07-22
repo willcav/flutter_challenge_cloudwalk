@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 
+import 'src/data/datasources/map_datasource_impl.dart';
 import 'src/data/interfaces/map_datasource.dart';
 import 'src/data/map_repository_impl.dart';
-import 'src/datasources/map_datasource_impl.dart';
 import 'src/domain/interfaces/map_repository.dart';
 import 'src/domain/usecases/get_location_usecase.dart';
 import 'src/presentation/map_viewmodel.dart';
@@ -26,9 +26,11 @@ class MapFeature implements CommonFeature {
     );
 
     SL.I.registerFactory<GetLocationUseCase>(
-        () => GetLocationUseCase(SL.I<MapRepository>()),);
+      () => GetLocationUseCase(SL.I<MapRepository>()),
+    );
 
     SL.I.registerFactory<MapViewModel>(
-        () => MapViewModel(SL.I<GetLocationUseCase>()),);
+      () => MapViewModel(SL.I<GetLocationUseCase>()),
+    );
   }
 }

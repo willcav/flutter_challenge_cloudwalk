@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 
-import '../data/interfaces/map_datasource.dart';
+import '../interfaces/map_datasource.dart';
 
 class MapDataSourceImpl implements MapDataSource {
   final Network _network;
