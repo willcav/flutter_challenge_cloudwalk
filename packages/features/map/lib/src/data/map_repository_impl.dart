@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 
 import '../domain/entities/location_info.dart';
 import '../domain/interfaces/map_repository.dart';
@@ -38,8 +39,10 @@ class MapRepositoryImpl implements MapRepository {
     return handleIpLocationResponse(ipLocation);
   }
 
+  @visibleForTesting
   Either<Failure, LocationInfo> handleIpLocationResponse(
-      Either<Failure, NetworkResponse> ipLocation,) {
+    Either<Failure, NetworkResponse> ipLocation,
+  ) {
     try {
       final locationInfo =
           LocationInfoModel.fromJson(ipLocation.right.jsonData);
