@@ -19,7 +19,7 @@ found [here](https://gist.github.com/cloudwalk-tests/0945f56177d3498d38cd9002d96
 ## Table of Contents
 
 - [Environment](#environment)
-    - [Setting up the project](#setting-up-the-project)
+    - [How to run](#how-to-run)
 - [Project Structure](#project-structure)
     - [Multi-Package Structure](#multi-package-structure)
     - [Multi-Package Mono Repo vs Multi Repo](#multi-package-mono-repo-vs-multi-repo)
@@ -31,7 +31,7 @@ found [here](https://gist.github.com/cloudwalk-tests/0945f56177d3498d38cd9002d96
 - [Architecture Overview](#architecture-overview)
     - [Dependency Injection](#dependency-injection)
     - [SOLID Principles](#solid-principles)
-- [Location Feature](#location-feature)
+- [Feature Overview](#feature-overview)
 - [Testing](#testing)
 
 ---
@@ -49,7 +49,7 @@ prepare your environment.
   | Flutter (channel Stable) | 3.19.6 |
   | Dart | >=3.3.4 <4.0.0 |
 
-### Setting up the project
+### How to run
 
 This project uses [Melos](https://github.com/invertase/melos) to manage the project and its
 dependencies.
@@ -68,6 +68,25 @@ To install Melos, run the following command in your terminal:
 ```bash
 dart pub global activate melos
 ```
+
+To initialize the workspace and link the local packages together and install remaining package
+dependencies, run the following command at the root of the project:
+
+```bash
+melos bs
+```
+
+#### Running the App
+
+To run the app, navigate to the `app` package and run the following command:
+
+```bash
+cd packages/app
+flutter run
+```
+
+You can also set the app entry point as `packages/app/lib/main.dart` through the Android Studio or
+Visual Studio Code and simply run by clicking the play button.
 
 ---
 
@@ -132,30 +151,28 @@ codebase.
 
 ### Resources
 
+Some of the features in the core package are abstractions of popular dependencies. Abstractions
+serve as a high-level representation of the functionality
+provided by third-party libraries.
+
+By leveraging abstractions and wrappers, we can achieve greater maintainability in our codebases.
+When the need arises to switch to a different library or upgrade to a newer version, the changes can
+be confined to the implementation of the abstraction or wrapper.
+
 - **Network**: Provides a comprehensive network layer abstraction with domain-driven design. It
   separates concerns into domain, data, and infrastructure layers, offering flexibility and ease of
-  testing.
+  testing. The Network implements the `Dio` package to handle HTTP requests.
 - **Geolocation**: Provides a comprehensive geolocation abstraction with domain-driven design. It
   separates concerns into domain, data, and infrastructure layers, offering flexibility and ease of
-  testing.
-- **ServiceLocator**:
-    - Abstractions serve as a high-level representation of the functionality
-      provided by third-party libraries.
-
-    - By leveraging abstractions and wrappers, we can achieve greater maintainability in our
-      codebases.
-      When the need arises to switch to a different service locator library or upgrade to a newer
-      version,
-      the changes can be confined to the implementation of the abstraction or wrapper.
-
-    - In this project, the GetIt dependency is encapsulated within the GetItDriver implementation,
-      adhering to the interface we've defined.
-
+  testing. The Geolocation implements the `geolocator` package to handle location requests.
+- **ServiceLocator**: In this project, the GetIt dependency is encapsulated within the GetItDriver
+  implementation,
+  adhering to the interface we've defined.
 - **Utils**: Provides a set of utility functions that can be used across the application.
 
 ### Map Package
 
-The map package holds the main feature of the app. It provides the `MapPage` component and the uses
+The map package holds the main feature of the app. It provides the `MapPage` component and uses
 the `Geolocation` to handle the user's location.
 
 ---
@@ -179,7 +196,9 @@ SOLID principles.
 
 ---
 
-## Location Feature
+## Feature Overview
+
+### Flow
 
 The logic to retrieve the user's location is managed by the `Map Package`.
 
@@ -195,6 +214,19 @@ will show a text "try again".
 
 <img src="https://i.imgur.com/rhtIKth.png" width="600" alt="location feature"/>
 
+### Structure
+
+As mentioned before, the `GeoLocation` feature is implemented in the `core` package and is
+responsible for managing the user's location. The `Map` package uses this feature through the
+implementation of the repository.
+
+The `Network` feature is also implemented in the `core` package and is responsible for managing the
+HTTP requests. The `Map` package uses this feature through the implementation of the repository to
+make a request to the `http://ip-api.com` API.
+
+Both the `GeoLocation` and `Network` work as sources for the user's location.
+
+<img src="https://i.imgur.com/oCU8jQ2.png" width="600" alt="architecture"/>
 ---
 
 ## Testing
